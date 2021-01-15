@@ -1,5 +1,11 @@
 /* DESARROLLO III (12/enero/2020) - Tarea 1. Procesamiento de archivos CSV (archivos secuenciales de texto)
-   Erica Jazmín Guzmán Silvas
+
+ ------------------------------------
+|  Erica Jazmín Guzmán Silvas        |
+|  José Ricardo Cruz Ruiz            |
+|  Karla Alexandria Cossio Mondragon |
+|  Valencia Valenzuela Alfredo       |
+ ------------------------------------
 
 1. Desarrollar un programa para agregar los datos de los vendedores a un archivo de datos CSV. 
    Los campos que debe incluir el registro son: clave del vendedor (entero), nombre del vendedor 
@@ -12,39 +18,23 @@
 package archivoscsv;
 
 import Atxy2k.CustomTextField.RestrictedTextField;
-import java.awt.event.ActionEvent;
-import java.awt.event.KeyEvent;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import javax.swing.AbstractAction;
-import javax.swing.ActionMap;
-import javax.swing.InputMap;
-import javax.swing.JComponent;
+import java.util.Calendar;
 import javax.swing.JOptionPane;
-import javax.swing.KeyStroke;
 
 /**
  *
  * @author Erica Guzmán
  */
-public class Principal extends javax.swing.JDialog {
+public class NewJFrame extends javax.swing.JFrame {
 
     /**
-     * A return status code - returned if Cancel button has been pressed
+     * Creates new form NewJFrame
      */
-    public static final int RET_CANCEL = 0;
-    /**
-     * A return status code - returned if OK button has been pressed
-     */
-    public static final int RET_OK = 1;
-
-    /**
-     * Creates new form Principal
-     */
-    public Principal(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
+    public NewJFrame() {
         initComponents();
         
         // Asignar restricciones inputs
@@ -57,24 +47,6 @@ public class Principal extends javax.swing.JDialog {
         RestrictedTextField restrictedZona = new RestrictedTextField(jTextFieldZona);
         restrictedZona.setLimit(15);
         restrictedZona.setOnlyText(true);
-
-        // Close the dialog when Esc is pressed
-        String cancelName = "cancel";
-        InputMap inputMap = getRootPane().getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
-        inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), cancelName);
-        ActionMap actionMap = getRootPane().getActionMap();
-        actionMap.put(cancelName, new AbstractAction() {
-            public void actionPerformed(ActionEvent e) {
-                doClose(RET_CANCEL);
-            }
-        });
-    }
-
-    /**
-     * @return the return status of this dialog - one of RET_OK or RET_CANCEL
-     */
-    public int getReturnStatus() {
-        return returnStatus;
     }
 
     /**
@@ -86,30 +58,51 @@ public class Principal extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        guardarButton = new javax.swing.JButton();
-        salirButton = new javax.swing.JButton();
-        jLabelClave = new javax.swing.JLabel();
-        jLabelNombre = new javax.swing.JLabel();
-        jLabelFecha = new javax.swing.JLabel();
         jLabelZona = new javax.swing.JLabel();
         jTextFieldClave = new javax.swing.JTextField();
         jTextFieldNombre = new javax.swing.JTextField();
-        jTextFieldFecha = new javax.swing.JTextField();
         jTextFieldZona = new javax.swing.JTextField();
         jButtonReporte1 = new javax.swing.JButton();
+        guardarButton = new javax.swing.JButton();
         jButtonReporte2 = new javax.swing.JButton();
+        salirButton = new javax.swing.JButton();
+        jLabelClave = new javax.swing.JLabel();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        jLabelNombre = new javax.swing.JLabel();
+        jLabelFecha = new javax.swing.JLabel();
 
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Vendedores");
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowClosing(java.awt.event.WindowEvent evt) {
-                closeDialog(evt);
+        setLocation(new java.awt.Point(0, 0));
+        setResizable(false);
+
+        jLabelZona.setText("Zona");
+
+        jTextFieldClave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldClaveActionPerformed(evt);
             }
         });
+
+        jTextFieldNombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldNombreActionPerformed(evt);
+            }
+        });
+
+        jButtonReporte1.setText("Reporte 1");
 
         guardarButton.setText("Guardar");
         guardarButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 guardarButtonActionPerformed(evt);
+            }
+        });
+
+        jButtonReporte2.setText("Reporte 2");
+        jButtonReporte2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonReporte2ActionPerformed(evt);
             }
         });
 
@@ -126,31 +119,6 @@ public class Principal extends javax.swing.JDialog {
 
         jLabelFecha.setText("Fecha");
 
-        jLabelZona.setText("Zona");
-
-        jTextFieldClave.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldClaveActionPerformed(evt);
-            }
-        });
-
-        jTextFieldNombre.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldNombreActionPerformed(evt);
-            }
-        });
-
-        jTextFieldFecha.setText("DD/MM/AAAA");
-
-        jButtonReporte1.setText("Reporte 1");
-
-        jButtonReporte2.setText("Reporte 2");
-        jButtonReporte2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonReporte2ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -159,7 +127,7 @@ public class Principal extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(142, 142, 142)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(guardarButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(salirButton))
@@ -169,16 +137,13 @@ public class Principal extends javax.swing.JDialog {
                             .addComponent(jLabelNombre)
                             .addComponent(jLabelFecha)
                             .addComponent(jLabelZona))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(22, 22, 22)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jTextFieldZona)
-                                    .addComponent(jTextFieldFecha)
-                                    .addComponent(jTextFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jTextFieldClave, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(22, 22, 22)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextFieldClave, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jTextFieldZona)
+                                .addComponent(jTextFieldNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE))
+                            .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButtonReporte1, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -198,11 +163,14 @@ public class Principal extends javax.swing.JDialog {
                     .addComponent(jLabelNombre)
                     .addComponent(jTextFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonReporte2))
-                .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelFecha)
-                    .addComponent(jTextFieldFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addComponent(jLabelFecha))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelZona)
                     .addComponent(jTextFieldZona, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -215,25 +183,37 @@ public class Principal extends javax.swing.JDialog {
 
         getRootPane().setDefaultButton(guardarButton);
 
-        getAccessibleContext().setAccessibleName("");
-
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void guardarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarButtonActionPerformed
+    private void jTextFieldClaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldClaveActionPerformed
 
+    }//GEN-LAST:event_jTextFieldClaveActionPerformed
+
+    private void jTextFieldNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNombreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldNombreActionPerformed
+
+    private void guardarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarButtonActionPerformed
+        // Verificar que todos los campos estén llenos
         if ((jTextFieldClave.getText().isEmpty()) || (jTextFieldNombre.getText().isEmpty())
-                || (jTextFieldFecha.getText().isEmpty()) || (jTextFieldZona.getText().isEmpty())) {
-            JOptionPane.showMessageDialog(null, "No puede haber campos vacíos.");
-            
+            || (jDateChooser1.getDate() == null) || (jTextFieldZona.getText().isEmpty())) {
+            JOptionPane.showMessageDialog(null, "Verifique los campos por favor");
+
         } else {
+            // Tomar la fecha ingresada y darle formato
+            String dia = Integer.toString(jDateChooser1.getCalendar().get(Calendar.DAY_OF_MONTH));
+            String mes = Integer.toString(jDateChooser1.getCalendar().get(Calendar.MONTH) + 1);
+            String anio = Integer.toString(jDateChooser1.getCalendar().get(Calendar.YEAR));
+            String fecha = dia + "/" + mes + "/" + anio;
+
             // Tomar los datos ingresados en los inputs
             int clave = Integer.parseInt(jTextFieldClave.getText());
             String nombre = jTextFieldNombre.getText();
-            String fecha = jTextFieldFecha.getText();
             String zona = jTextFieldZona.getText();
             String linea = clave + "," + nombre + "," + fecha + "," + zona;
-            
+
             // Escribir en el archivo la línea con los datos
             try {
                 File archivo = new File("vendors.csv");
@@ -245,9 +225,9 @@ public class Principal extends javax.swing.JDialog {
                     fw = new FileWriter(archivo);
                 }
 
-                BufferedWriter bw = new BufferedWriter(fw);  // Al bw se le manda el fw que es el archivo que creó o escribió algo nuevo en uno ya existente (para que funcione el bw)
+                BufferedWriter bw = new BufferedWriter(fw);  
 
-                bw.write(linea);                             // Escribir la línea en el archivo
+                bw.write(linea);   // Escribir la línea en el archivo
                 bw.newLine();
 
                 bw.flush();
@@ -261,40 +241,19 @@ public class Principal extends javax.swing.JDialog {
             // Limpiar inputs
             jTextFieldClave.setText("");
             jTextFieldNombre.setText("");
-            jTextFieldFecha.setText("");
             jTextFieldZona.setText("");
+            jDateChooser1.setDateFormatString("");
         }
-        
+
     }//GEN-LAST:event_guardarButtonActionPerformed
-
-    private void salirButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirButtonActionPerformed
-        System.exit(0);
-    }//GEN-LAST:event_salirButtonActionPerformed
-
-    /**
-     * Closes the dialog
-     */
-    private void closeDialog(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_closeDialog
-        doClose(RET_CANCEL);
-    }//GEN-LAST:event_closeDialog
-
-    private void jTextFieldClaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldClaveActionPerformed
-        
-    }//GEN-LAST:event_jTextFieldClaveActionPerformed
-
-    private void jTextFieldNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNombreActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldNombreActionPerformed
 
     private void jButtonReporte2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReporte2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonReporte2ActionPerformed
-    
-    private void doClose(int retStatus) {
-        returnStatus = retStatus;
-        setVisible(false);
-        dispose();
-    }
+
+    private void salirButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirButtonActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_salirButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -313,32 +272,22 @@ public class Principal extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(NewJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(NewJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(NewJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(NewJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
-        /* Create and display the dialog */
+        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                Principal dialog = new Principal(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-
+                
                 // Características de la ventana
-                dialog.setResizable(false);
-                dialog.setLayout(null);
-                dialog.setLocationRelativeTo(null);
-                dialog.setVisible(true);
+                new NewJFrame().setVisible(true);
             }
         });
     }
@@ -347,16 +296,14 @@ public class Principal extends javax.swing.JDialog {
     private javax.swing.JButton guardarButton;
     private javax.swing.JButton jButtonReporte1;
     private javax.swing.JButton jButtonReporte2;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabelClave;
     private javax.swing.JLabel jLabelFecha;
     private javax.swing.JLabel jLabelNombre;
     private javax.swing.JLabel jLabelZona;
     private javax.swing.JTextField jTextFieldClave;
-    private javax.swing.JTextField jTextFieldFecha;
     private javax.swing.JTextField jTextFieldNombre;
     private javax.swing.JTextField jTextFieldZona;
     private javax.swing.JButton salirButton;
     // End of variables declaration//GEN-END:variables
-
-    private int returnStatus = RET_CANCEL;
 }
