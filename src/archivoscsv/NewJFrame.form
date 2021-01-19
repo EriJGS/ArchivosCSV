@@ -55,8 +55,8 @@
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jButtonReporte1" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Component id="jButtonReporte2" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButtonReporte1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButtonReporte2" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -126,6 +126,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Reporte 1"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonReporte1ActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="guardarButton">
       <Properties>
@@ -137,14 +140,6 @@
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="getRootPane().setDefaultButton(guardarButton);"/>
       </AuxValues>
-    </Component>
-    <Component class="javax.swing.JButton" name="jButtonReporte2">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Reporte 2"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonReporte2ActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="salirButton">
       <Properties>
@@ -170,6 +165,14 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Fecha"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButtonReporte2">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Reporte 2"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonReporte2ActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
